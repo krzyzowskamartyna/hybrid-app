@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Weather Forecast
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div style="width: 95%; padding: 20px; margin: 0; position: absolute;">
+    <p *ngIf="weather.length == 0">Searching... <br />Please make sure your geolocation in on!</p>
+    <div *ngIf="weather.length > 0">
+      <div *ngFor="let forecast of weather" style="padding: 1%; margin: 1px;border: 0.1px solid #22282f; display: flex; justify-content: center;
+      flex-direction:column">
+        <ion-label color="dark">{{forecast.weekday}}</ion-label>
+        <ion-avatar>
+          <img [src]="forecast.iconLink" />
+        </ion-avatar>
+        <p> Temperature: {{ forecast.highTemperature }} &#176;C </p>
+        <p> Description: {{ forecast.description }}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>
