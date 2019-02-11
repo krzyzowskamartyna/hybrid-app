@@ -10,15 +10,20 @@
   <div style="width: 95%; padding: 20px; margin: 0; position: absolute;">
     <p *ngIf="weather.length == 0">Searching... <br />Please make sure your geolocation in on!</p>
     <div *ngIf="weather.length > 0">
-      <div *ngFor="let forecast of weather" style="padding: 1%; margin: 1px;border: 0.1px solid #22282f; display: flex; justify-content: center;
+      <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide *ngFor="let forecast of weather" style="padding:5%; display: flex; justify-content: center;
       flex-direction:column">
-        <ion-label color="dark">{{forecast.weekday}}</ion-label>
-        <ion-avatar>
-          <img [src]="forecast.iconLink" />
-        </ion-avatar>
-        <p> Temperature: {{ forecast.highTemperature }} &#176;C </p>
-        <p> Description: {{ forecast.description }}</p>
-      </div>
+          <ion-card-title slot="start" color="dark">{{forecast.weekday}}</ion-card-title>
+          <ion-avatar>
+            <ion-img [src]="forecast.iconLink"></ion-img>
+          </ion-avatar>
+          <p> Highest Temperature: {{ forecast.highTemperature }} &#176;C </p>
+          <p> Lowest Temperature: {{ forecast.lowTemperature}} &#176;C</p>
+          <p> Pressure: {{ forecast.barometerPressure }} hPa </p>
+          <p> Wind speed: {{ forecast.windSpeed }} km/h </p>
+          <p> Description: {{ forecast.description }} </p>
+        </ion-slide>
+      </ion-slides>
     </div>
   </div>
 </ion-content>
